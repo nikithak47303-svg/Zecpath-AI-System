@@ -1,0 +1,4 @@
+Name: John Doe
+Skills: Python, FastAPI, React, Node.js
+Experience: 3 years
+Education: B.Tech Computer Science
