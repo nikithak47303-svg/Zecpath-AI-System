@@ -3,6 +3,7 @@ from ats_engine.ats_scorer import calculate_ats_score
 from screening_ai.screening_logic import screening_decision
 from scoring.score_aggregator import aggregate_score
 from utils.logger import setup_logger
+import json
 
 
 def main():
@@ -10,33 +11,27 @@ def main():
     logger.info("Zecpath AI System Started")
 
     print("📄 Reading Resume...")
-    resume_text = parse_resume("data/sample_resume.txt")
+   # Read resume as structured dictionary
+parsed_resume = parse_resume("data/sample_resume.txt")
 
-    print("🧠 Calculating ATS Score...")
-    ats_score = calculate_ats_score(resume_text)
+# Map to JSON schema
+resume_json = {
+    "candidate_profile": {
+        "name": parsed_resume.get("name", ""),
+        "email": parsed_resume.get("email", ""),
+        "phone": parsed_resume.get("phone", ""),
+        "linkedin": parsed_resume.get("linkedin", ""),
+        "address": parsed_resume.get("address", ""),
+        "total_experience": parsed_resume.get("total_experience", 0)
+    },
+    "education": parsed_resume.get("education", []),
+    "experience": parsed_resume.get("experience", []),
+    "skills": [{"skill_name": s, "proficiency_level": ""} for s in parsed_resume.get("skills", [])],
+    "certifications": parsed_resume.get("certifications", [])
+}
 
-    print("📊 Making Screening Decision...")
-    decision = screening_decision(ats_score)
+# Save JSON to file
+with open("data/structured_resume.json", "w") as f:
+    json.dump([resume_json], f, indent=4)
 
-    print("🔢 Aggregating Final Score...")
-    final_score = aggregate_score(ats_score)
-
-    logger.info(f"ATS Score: {ats_score}")
-    logger.info(f"Final Score: {final_score}")
-    logger.info(f"Decision: {decision}")
-
-    print("\n===== RESULT =====")
-    print("ATS Score:", ats_score)
-    print("Final Score:", final_score)
-    print("Screening Decision:", decision)
-
-
-if __name__ == "__main__":
-    main()
-from utils.logger import get_logger
-
-logger = get_logger(__name__)
-
-if __name__ == "__main__":
-    logger.info("Zecpath AI System Started")
-    print("System Running...")
+print("✅ Structured resume JSON created at data/structured_resume.json")

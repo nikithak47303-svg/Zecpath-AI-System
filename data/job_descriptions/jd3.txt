@@ -1,0 +1,8 @@
+Job Title: Frontend Developer
+Department: IT
+Skills: HTML, CSS, JavaScript, React
+Experience: 3 years
+Education: B.Tech in Computer Science
+Location: Pune, India
+Job Type: Contract
+Certifications: None

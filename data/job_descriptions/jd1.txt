@@ -1,0 +1,8 @@
+Job Title: Software Engineer
+Department: IT
+Skills: Python, FastAPI, React
+Experience: 2 years
+Education: B.Tech in Computer Science
+Location: Bangalore, India
+Job Type: Full-time
+Certifications: None
