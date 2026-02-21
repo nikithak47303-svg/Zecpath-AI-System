@@ -2,42 +2,39 @@
     {
         "candidate_profile": {
             "name": "John Doe",
-            "email": "john@example.com",
-            "phone": "1234567890",
-            "linkedin": "linkedin.com/in/johndoe",
-            "address": "Bangalore, India",
-            "total_experience": 3,
-            "education": [
-                {
-                    "degree": "B.Tech",
-                    "specialization": "Computer Science",
-                    "institute": "XYZ University",
-                    "year": "2020"
-                }
-            ],
-            "experience": [
-                {
-                    "company_name": "ABC Corp",
-                    "designation": "Software Engineer",
-                    "start_date": "2020-06",
-                    "end_date": "2023-01",
-                    "location": "Bangalore",
-                    "description": "Worked on web development projects"
-                }
-            ],
-            "skills": [
-                {
-                    "skill_name": "Python",
-                    "proficiency_level": "Advanced"
-                },
-                {
-                    "skill_name": "React",
-                    "proficiency_level": "Intermediate"
-                }
-            ],
-            "certifications": [
-                "AWS Certified Developer"
-            ]
-        }
+            "email": "",
+            "phone": "",
+            "linkedin": "",
+            "address": "",
+            "total_experience": 3
+        },
+        "education": [
+            {
+                "degree": "B.Tech Computer Science",
+                "specialization": "",
+                "institute": "",
+                "year": ""
+            }
+        ],
+        "experience": [],
+        "skills": [
+            {
+                "skill_name": "Python",
+                "proficiency_level": ""
+            },
+            {
+                "skill_name": "FastAPI",
+                "proficiency_level": ""
+            },
+            {
+                "skill_name": "React",
+                "proficiency_level": ""
+            },
+            {
+                "skill_name": "Node.js",
+                "proficiency_level": ""
+            }
+        ],
+        "certifications": []
     }
 ]

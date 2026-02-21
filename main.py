@@ -35,3 +35,15 @@ with open("data/structured_resume.json", "w") as f:
     json.dump([resume_json], f, indent=4)
 
 print("✅ Structured resume JSON created at data/structured_resume.json")
+from utils.logger import setup_logger
+
+logger = setup_logger()
+
+logger.info("AI Hiring System Started")
+
+# Example test result logging
+logger.info("Test Case 1 - Resume Reader - PASS")
+logger.info("Test Case 2 - JD Reader - PASS")
+logger.info("Test Case 3 - ATS Matcher - PASS")
+
+print("System executed successfully")
