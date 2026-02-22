@@ -1,0 +1,25 @@
+{
+  "name": "Arjun Menon",
+  "email": "arjun.menon@gmail.com",
+  "phone": "9876543210",
+  "linkedin": "linkedin.com/in/arjunmenon",
+  "address": "Calicut, Kerala",
+  "total_experience": 3,
+  "skills": ["Python", "Django", "SQL", "AWS", "REST API"],
+  "experience": [
+    {
+      "designation": "Software Engineer",
+      "company": "TechNova Solutions",
+      "duration": "2021-2024"
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech",
+      "field": "Computer Science",
+      "institution": "APJ Abdul Kalam Technological University"
+    }
+  ],
+  "certifications": ["AWS Certified Developer"],
+  "projects": ["E-commerce Web Application", "Cloud Deployment Automation"]
+}

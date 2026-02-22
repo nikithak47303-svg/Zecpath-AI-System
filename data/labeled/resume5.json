@@ -1,0 +1,25 @@
+{
+  "name": "Vishnu Raj",
+  "email": "vishnu.raj@gmail.com",
+  "phone": "9098765432",
+  "linkedin": "linkedin.com/in/vishnuraj",
+  "address": "Thrissur, Kerala",
+  "total_experience": 3,
+  "skills": ["AutoCAD", "SolidWorks", "Maintenance Planning", "Quality Control"],
+  "experience": [
+    {
+      "designation": "Mechanical Engineer",
+      "company": "Prime Engineering Works",
+      "duration": "2021-2024"
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech",
+      "field": "Mechanical Engineering",
+      "institution": "Calicut University"
+    }
+  ],
+  "certifications": ["AutoCAD Professional Certification"],
+  "projects": ["Industrial Machine Design Optimization"]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Rahul Nair",
+  "email": "rahul.nair@gmail.com",
+  "phone": "9988776655",
+  "linkedin": "linkedin.com/in/rahulnair",
+  "address": "Kannur, Kerala",
+  "total_experience": 2,
+  "skills": ["Python", "SQL", "Power BI", "Data Visualization", "Excel"],
+  "experience": [
+    {
+      "designation": "Data Analyst",
+      "company": "Insight Analytics",
+      "duration": "2022-2024"
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc",
+      "field": "Statistics",
+      "institution": "Kannur University"
+    }
+  ],
+  "certifications": ["Google Data Analytics"],
+  "projects": ["Sales Forecast Dashboard", "Customer Segmentation Analysis"]
+}
