@@ -18,3 +18,10 @@
 3. Install requirements
 4. Run main.py
 5. Run pytest for testing
+
+## Day 12 – Semantic Matching Engine
+
+- Resume ↔ JD embedding generation
+- Section-wise similarity scoring
+- Weighted match calculation
+- Matching accuracy validation

@@ -1,6 +1,6 @@
 {
-  "job_title": "Software Engineer",
-  "experience": "3+ years",
-  "education": "Bachelor's in Computer Science",
-  "skills": ["Python", "Django", "REST APIs", "AWS", "Agile"]
+  "role": "software_engineer",
+  "required_skills": ["Python", "Django", "REST APIs", "AWS", "Agile"],
+  "required_experience": 3,
+  "required_education": "Bachelor's in Computer Science"
 }
