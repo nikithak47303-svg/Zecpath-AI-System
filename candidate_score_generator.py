@@ -17,6 +17,9 @@ def calculate_skill_score(candidate_skills, required_skills):
 
 
 def calculate_experience_score(candidate_exp, required_exp):
+    if required_exp == 0:
+        return 100
+
     if candidate_exp >= required_exp:
         return 100
     else:
@@ -24,9 +27,37 @@ def calculate_experience_score(candidate_exp, required_exp):
 
 
 def calculate_education_score(candidate_degree, required_degree):
-    if candidate_degree.lower() == required_degree.lower():
+
+    # Convert candidate_degree safely to string
+    if isinstance(candidate_degree, list):
+        temp = []
+        for item in candidate_degree:
+            if isinstance(item, str):
+                temp.append(item)
+            elif isinstance(item, dict):
+                for v in item.values():
+                    temp.append(str(v))
+        candidate_degree = " ".join(temp)
+
+    elif isinstance(candidate_degree, dict):
+        candidate_degree = " ".join(str(v) for v in candidate_degree.values())
+
+    elif not isinstance(candidate_degree, str):
+        candidate_degree = str(candidate_degree)
+
+    # Convert required_degree safely
+    if not isinstance(required_degree, str):
+        required_degree = str(required_degree)
+
+    if not candidate_degree or not required_degree:
+        return 50
+
+    candidate_degree = candidate_degree.lower()
+    required_degree = required_degree.lower()
+
+    if candidate_degree == required_degree:
         return 100
-    elif candidate_degree.lower() in required_degree.lower():
+    elif required_degree in candidate_degree:
         return 80
     else:
         return 50
@@ -37,23 +68,56 @@ def generate_candidate_score(resume_path, job_path, semantic_score):
     resume = load_json(resume_path)
     job = load_json(job_path)
 
-    skill_score = calculate_skill_score(
-        resume["skills"],
-        job["required_skills"]
-    )
+    # ✅ HANDLE LIST-BASED JSON
+    if isinstance(resume, list):
+        resume = resume[0]
 
-    exp_score = calculate_experience_score(
-        resume["experience_years"],
-        job["required_experience"]
-    )
+    if isinstance(job, list):
+        job = job[0]
 
-    edu_score = calculate_education_score(
-        resume["education"],
-        job["required_education"]
-    )
+    # ===== SAFE DATA EXTRACTION =====
+    candidate_name = resume.get("name", "Unknown")
+
+    # ===== SKILLS HANDLING =====
+    skills_data = resume.get("skills", [])
+    candidate_skills = []
+
+    # If skills is a list
+    if isinstance(skills_data, list):
+        for skill in skills_data:
+            if isinstance(skill, str):
+                candidate_skills.append(skill.strip())
+
+    # If skills is a comma-separated string
+    elif isinstance(skills_data, str):
+        candidate_skills = [
+            skill.strip() for skill in skills_data.split(",") if skill.strip()
+        ]
+
+    # If skills is a dictionary
+    elif isinstance(skills_data, dict):
+        for value in skills_data.values():
+            if isinstance(value, list):
+                for skill in value:
+                    if isinstance(skill, str):
+                        candidate_skills.append(skill.strip())
+
+    # ===== OTHER DATA =====
+    candidate_exp = resume.get("total_experience", 0)
+    candidate_degree = resume.get("education", "")
+
+    required_skills = job.get("required_skills", [])
+    required_exp = job.get("required_experience", 0)
+    required_degree = job.get("required_education", "")
+    job_role = job.get("role", "Unknown Role")
+
+    # ===== CALCULATE SCORES =====
+    skill_score = calculate_skill_score(candidate_skills, required_skills)
+    exp_score = calculate_experience_score(candidate_exp, required_exp)
+    edu_score = calculate_education_score(candidate_degree, required_degree)
 
     final_score = calculate_ats_score(
-        job["role"],
+        job_role,
         skill_score,
         exp_score,
         edu_score,
@@ -61,18 +125,12 @@ def generate_candidate_score(resume_path, job_path, semantic_score):
     )
 
     print("\n===== Candidate Final ATS Report =====")
-    print(f"Candidate: {resume['name']}")
-    print(f"Role: {job['role']}")
+    print(f"Candidate: {candidate_name}")
+    print(f"Role: {job_role}")
     print(f"Skill Score: {round(skill_score, 2)}")
     print(f"Experience Score: {round(exp_score, 2)}")
     print(f"Education Score: {round(edu_score, 2)}")
     print(f"Semantic Score: {semantic_score}")
-    print(f"\nFinal ATS Score: {final_score}%")
+    print(f"\nFinal ATS Score: {round(final_score, 2)}%")
 
-
-if __name__ == "__main__":
- generate_candidate_score(
-    "data/sample_resume.json",
-    "data/jobs/software_engineer.json",
-    semantic_score=82
-)
+    return final_score
