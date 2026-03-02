@@ -25,3 +25,9 @@
 - Section-wise similarity scoring
 - Weighted match calculation
 - Matching accuracy validation
+final_score = (
+    skill_score * 0.4 +
+    experience_score * 0.2 +
+    education_score * 0.1 +
+    semantic_score * 0.3
+)
