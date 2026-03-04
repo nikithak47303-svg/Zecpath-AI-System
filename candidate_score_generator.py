@@ -1,136 +1,107 @@
 import json
-from ats_scoring_engine import calculate_ats_score
+import re
+
+# ==============================
+# HELPER FUNCTIONS
+# ==============================
+
+def normalize_text(text):
+    """Lowercase and convert list/dict items into a single string for comparison."""
+    if not text:
+        return ""
+    
+    if isinstance(text, list):
+        new_list = []
+        for item in text:
+            if isinstance(item, str):
+                new_list.append(item)
+            elif isinstance(item, dict):
+                new_list.append(" ".join(str(v) for v in item.values()))
+        text = " ".join(new_list)
+    
+    elif isinstance(text, dict):
+        text = " ".join(str(v) for v in text.values())
+    
+    # Remove extra spaces and lowercase
+    return str(text).strip().lower()
 
 
-def load_json(file_path):
-    with open(file_path, "r") as f:
-        return json.load(f)
-
-
-def calculate_skill_score(candidate_skills, required_skills):
-    matched = set(candidate_skills).intersection(set(required_skills))
-
-    if len(required_skills) == 0:
+def match_skills(candidate_skills, required_skills):
+    """Return skill match percentage (0-100) with partial matching."""
+    if not candidate_skills or not required_skills:
         return 0
 
-    return (len(matched) / len(required_skills)) * 100
+    candidate_skills_text = " ".join([normalize_text(s) for s in candidate_skills])
+    required_skills = [normalize_text(s) for s in required_skills]
+
+    matched_count = 0
+    for skill in required_skills:
+        # Partial match: check if skill is contained in candidate text
+        if re.search(r'\b' + re.escape(skill) + r'\b', candidate_skills_text):
+            matched_count += 1
+
+    return (matched_count / len(required_skills)) * 100
 
 
-def calculate_experience_score(candidate_exp, required_exp):
-    if required_exp == 0:
+def match_experience(candidate_exp_years, min_exp_required):
+    """Return experience match percentage (0-100)."""
+    if candidate_exp_years is None or min_exp_required is None:
+        return 0
+
+    if candidate_exp_years >= min_exp_required:
         return 100
 
-    if candidate_exp >= required_exp:
-        return 100
-    else:
-        return (candidate_exp / required_exp) * 100
+    return (candidate_exp_years / min_exp_required) * 100
 
 
-def calculate_education_score(candidate_degree, required_degree):
+def match_education(candidate_edu, required_edu):
+    """Return education match percentage (0-100) with partial matching."""
+    if not candidate_edu or not required_edu:
+        return 0
 
-    # Convert candidate_degree safely to string
-    if isinstance(candidate_degree, list):
-        temp = []
-        for item in candidate_degree:
-            if isinstance(item, str):
-                temp.append(item)
-            elif isinstance(item, dict):
-                for v in item.values():
-                    temp.append(str(v))
-        candidate_degree = " ".join(temp)
+    candidate_edu = normalize_text(candidate_edu)
+    required_edu = normalize_text(required_edu)
 
-    elif isinstance(candidate_degree, dict):
-        candidate_degree = " ".join(str(v) for v in candidate_degree.values())
+    # Partial match: split required education into words
+    req_words = required_edu.split()
+    matched_words = sum(1 for w in req_words if w in candidate_edu)
 
-    elif not isinstance(candidate_degree, str):
-        candidate_degree = str(candidate_degree)
-
-    # Convert required_degree safely
-    if not isinstance(required_degree, str):
-        required_degree = str(required_degree)
-
-    if not candidate_degree or not required_degree:
-        return 50
-
-    candidate_degree = candidate_degree.lower()
-    required_degree = required_degree.lower()
-
-    if candidate_degree == required_degree:
-        return 100
-    elif required_degree in candidate_degree:
-        return 80
-    else:
-        return 50
+    return (matched_words / len(req_words)) * 100 if req_words else 0
 
 
-def generate_candidate_score(resume_path, job_path, semantic_score):
+# ==============================
+# MAIN SCORE FUNCTION
+# ==============================
 
-    resume = load_json(resume_path)
-    job = load_json(job_path)
+def generate_candidate_score(resume_path, job_data):
+    """
+    Calculate candidate score (0-100%) based on:
+    - Skills (50%)
+    - Experience (30%)
+    - Education (20%)
+    """
+    with open(resume_path, "r") as f:
+        resume_data = json.load(f)
 
-    # ✅ HANDLE LIST-BASED JSON
-    if isinstance(resume, list):
-        resume = resume[0]
+    if isinstance(resume_data, list):
+        resume_data = resume_data[0]
 
-    if isinstance(job, list):
-        job = job[0]
+    # Candidate info
+    candidate_skills = resume_data.get("skills", [])
+    candidate_exp_years = resume_data.get("total_experience_years", 0)
+    candidate_education = resume_data.get("education", "")
 
-    # ===== SAFE DATA EXTRACTION =====
-    candidate_name = resume.get("name", "Unknown")
+    # Job info
+    required_skills = job_data.get("required_skills", [])
+    min_experience = job_data.get("min_experience_years", 0)
+    required_education = job_data.get("required_education", "")
 
-    # ===== SKILLS HANDLING =====
-    skills_data = resume.get("skills", [])
-    candidate_skills = []
+    # Compute partial scores
+    skill_score = match_skills(candidate_skills, required_skills)
+    exp_score = match_experience(candidate_exp_years, min_experience)
+    edu_score = match_education(candidate_education, required_education)
 
-    # If skills is a list
-    if isinstance(skills_data, list):
-        for skill in skills_data:
-            if isinstance(skill, str):
-                candidate_skills.append(skill.strip())
+    # Weighted total
+    total_score = (0.5 * skill_score) + (0.3 * exp_score) + (0.2 * edu_score)
 
-    # If skills is a comma-separated string
-    elif isinstance(skills_data, str):
-        candidate_skills = [
-            skill.strip() for skill in skills_data.split(",") if skill.strip()
-        ]
-
-    # If skills is a dictionary
-    elif isinstance(skills_data, dict):
-        for value in skills_data.values():
-            if isinstance(value, list):
-                for skill in value:
-                    if isinstance(skill, str):
-                        candidate_skills.append(skill.strip())
-
-    # ===== OTHER DATA =====
-    candidate_exp = resume.get("total_experience", 0)
-    candidate_degree = resume.get("education", "")
-
-    required_skills = job.get("required_skills", [])
-    required_exp = job.get("required_experience", 0)
-    required_degree = job.get("required_education", "")
-    job_role = job.get("role", "Unknown Role")
-
-    # ===== CALCULATE SCORES =====
-    skill_score = calculate_skill_score(candidate_skills, required_skills)
-    exp_score = calculate_experience_score(candidate_exp, required_exp)
-    edu_score = calculate_education_score(candidate_degree, required_degree)
-
-    final_score = calculate_ats_score(
-        job_role,
-        skill_score,
-        exp_score,
-        edu_score,
-        semantic_score
-    )
-
-    print("\n===== Candidate Final ATS Report =====")
-    print(f"Candidate: {candidate_name}")
-    print(f"Role: {job_role}")
-    print(f"Skill Score: {round(skill_score, 2)}")
-    print(f"Experience Score: {round(exp_score, 2)}")
-    print(f"Education Score: {round(edu_score, 2)}")
-    print(f"Semantic Score: {semantic_score}")
-    print(f"\nFinal ATS Score: {round(final_score, 2)}%")
-
-    return final_score
+    return round(total_score, 2)
