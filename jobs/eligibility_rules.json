@@ -1,0 +1,23 @@
+{
+  "AUD020": {
+    "ats_cutoff": 70,
+    "review_cutoff": 50,
+    "mandatory_skills": ["audit", "risk analysis"],
+    "experience_range": {
+      "min": 2,
+      "max": 6
+    },
+    "allowed_locations": ["Kerala", "Remote"]
+  },
+
+  "AUD021": {
+    "ats_cutoff": 65,
+    "review_cutoff": 45,
+    "mandatory_skills": ["financial reporting", "accounting"],
+    "experience_range": {
+      "min": 1,
+      "max": 5
+    },
+    "allowed_locations": ["India", "Remote"]
+  }
+}
