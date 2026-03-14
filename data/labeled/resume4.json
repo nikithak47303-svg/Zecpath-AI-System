@@ -1,0 +1,25 @@
+{
+  "name": "Neha Pillai",
+  "email": "neha.pillai@gmail.com",
+  "phone": "9012345678",
+  "linkedin": "linkedin.com/in/nehapillai",
+  "address": "Trivandrum, Kerala",
+  "total_experience": 4,
+  "skills": ["Recruitment", "Employee Relations", "Payroll Management", "HR Analytics"],
+  "experience": [
+    {
+      "designation": "HR Executive",
+      "company": "PeopleFirst HR Solutions",
+      "duration": "2020-2024"
+    }
+  ],
+  "education": [
+    {
+      "degree": "MBA",
+      "field": "Human Resources",
+      "institution": "Kerala University"
+    }
+  ],
+  "certifications": ["HR Analytics Certification"],
+  "projects": ["Campus Recruitment Drive Management"]
+}

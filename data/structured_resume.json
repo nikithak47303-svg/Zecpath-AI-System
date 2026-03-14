@@ -1,0 +1,40 @@
+[
+    {
+        "candidate_profile": {
+            "name": "John Doe",
+            "email": "",
+            "phone": "",
+            "linkedin": "",
+            "address": "",
+            "total_experience": 3
+        },
+        "education": [
+            {
+                "degree": "B.Tech Computer Science",
+                "specialization": "",
+                "institute": "",
+                "year": ""
+            }
+        ],
+        "experience": [],
+        "skills": [
+            {
+                "skill_name": "Python",
+                "proficiency_level": ""
+            },
+            {
+                "skill_name": "FastAPI",
+                "proficiency_level": ""
+            },
+            {
+                "skill_name": "React",
+                "proficiency_level": ""
+            },
+            {
+                "skill_name": "Node.js",
+                "proficiency_level": ""
+            }
+        ],
+        "certifications": []
+    }
+]

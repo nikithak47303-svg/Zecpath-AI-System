@@ -1,0 +1,11 @@
+We are looking for a Software Engineer with 3+ years of experience in Python and Django.
+Bachelor’s degree in Computer Science is required.
+Familiarity with REST APIs, AWS, and Agile methodologies is a plus.
+
+Hiring a Frontend Developer with 2-4 years of experience in React, JavaScript, HTML, and CSS.
+Bachelor’s degree in Information Technology or related field preferred.
+Experience with responsive design and UI frameworks is a bonus.
+
+Looking for a Data Analyst with 1-3 years experience in SQL, Excel, and Tableau.
+Bachelor’s degree in Statistics, Mathematics, or Computer Science required.
+Ability to generate dashboards and reports for business insights.

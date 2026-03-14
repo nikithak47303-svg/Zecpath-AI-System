@@ -1,0 +1,54 @@
+[
+    {
+        "job_profile": {
+            "job_title": "Software Engineer",
+            "department": "IT",
+            "skills_required": [
+                "Python",
+                "FastAPI",
+                "React"
+            ],
+            "experience_required": 2,
+            "education_required": "B.Tech in Computer Science",
+            "certifications_required": [],
+            "location": "Bangalore, India",
+            "job_type": "Full-time"
+        }
+    },
+    {
+        "job_profile": {
+            "job_title": "Data Analyst",
+            "department": "Data Science",
+            "skills_required": [
+                "Python",
+                "SQL",
+                "Tableau",
+                "Excel"
+            ],
+            "experience_required": 1,
+            "education_required": "B.Sc in Statistics or Computer Science",
+            "certifications_required": [
+                "Google Data Analytics"
+            ],
+            "location": "Hyderabad, India",
+            "job_type": "Full-time"
+        }
+    },
+    {
+        "job_profile": {
+            "job_title": "Frontend Developer",
+            "department": "IT",
+            "skills_required": [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "React"
+            ],
+            "experience_required": 3,
+            "education_required": "B.Tech in Computer Science",
+            "certifications_required": [],
+            "location": "Pune, India",
+            "job_type": "Contract"
+        }
+    }
+]

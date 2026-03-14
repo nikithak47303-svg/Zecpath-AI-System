@@ -1,0 +1,8 @@
+Job Title: Data Analyst
+Department: Data Science
+Skills: Python, SQL, Tableau, Excel
+Experience: 1 year
+Education: B.Sc in Statistics or Computer Science
+Location: Hyderabad, India
+Job Type: Full-time
+Certifications: Google Data Analytics

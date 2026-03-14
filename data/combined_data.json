@@ -1,0 +1,99 @@
+{
+    "candidates": [
+        {
+            "candidate_profile": {
+                "name": "John Doe",
+                "email": "john@example.com",
+                "phone": "1234567890",
+                "linkedin": "linkedin.com/in/johndoe",
+                "address": "Bangalore, India",
+                "total_experience": 3,
+                "education": [
+                    {
+                        "degree": "B.Tech",
+                        "specialization": "Computer Science",
+                        "institute": "XYZ University",
+                        "year": "2020"
+                    }
+                ],
+                "experience": [
+                    {
+                        "company_name": "ABC Corp",
+                        "designation": "Software Engineer",
+                        "start_date": "2020-06",
+                        "end_date": "2023-01",
+                        "location": "Bangalore",
+                        "description": "Worked on web development projects"
+                    }
+                ],
+                "skills": [
+                    {
+                        "skill_name": "Python",
+                        "proficiency_level": "Advanced"
+                    },
+                    {
+                        "skill_name": "React",
+                        "proficiency_level": "Intermediate"
+                    }
+                ],
+                "certifications": [
+                    "AWS Certified Developer"
+                ]
+            }
+        }
+    ],
+    "jobs": [
+        {
+            "job_profile": {
+                "job_title": "Software Engineer",
+                "department": "IT",
+                "skills_required": [
+                    "Python",
+                    "FastAPI",
+                    "React"
+                ],
+                "experience_required": 2,
+                "education_required": "B.Tech in Computer Science",
+                "certifications_required": [],
+                "location": "Bangalore, India",
+                "job_type": "Full-time"
+            }
+        },
+        {
+            "job_profile": {
+                "job_title": "Data Analyst",
+                "department": "Data Science",
+                "skills_required": [
+                    "Python",
+                    "SQL",
+                    "Tableau",
+                    "Excel"
+                ],
+                "experience_required": 1,
+                "education_required": "B.Sc in Statistics or Computer Science",
+                "certifications_required": [
+                    "Google Data Analytics"
+                ],
+                "location": "Hyderabad, India",
+                "job_type": "Full-time"
+            }
+        },
+        {
+            "job_profile": {
+                "job_title": "Frontend Developer",
+                "department": "IT",
+                "skills_required": [
+                    "HTML",
+                    "CSS",
+                    "JavaScript",
+                    "React"
+                ],
+                "experience_required": 3,
+                "education_required": "B.Tech in Computer Science",
+                "certifications_required": [],
+                "location": "Pune, India",
+                "job_type": "Contract"
+            }
+        }
+    ]
+}

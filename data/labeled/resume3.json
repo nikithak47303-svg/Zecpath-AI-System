@@ -1,0 +1,25 @@
+{
+  "name": "Anjali Varma",
+  "email": "anjali.varma@gmail.com",
+  "phone": "9123456789",
+  "linkedin": "linkedin.com/in/anjalivarma",
+  "address": "Kochi, Kerala",
+  "total_experience": 2,
+  "skills": ["HTML", "CSS", "JavaScript", "React", "Bootstrap"],
+  "experience": [
+    {
+      "designation": "Frontend Developer",
+      "company": "WebCraft Technologies",
+      "duration": "2022-2024"
+    }
+  ],
+  "education": [
+    {
+      "degree": "BCA",
+      "field": "Computer Applications",
+      "institution": "MG University"
+    }
+  ],
+  "certifications": ["React Developer Certification"],
+  "projects": ["Portfolio Website", "Responsive E-learning Platform"]
+}
