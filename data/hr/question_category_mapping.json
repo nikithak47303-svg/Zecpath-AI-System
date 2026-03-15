@@ -1,0 +1,30 @@
+{
+  "Introduction": [
+    "HR001",
+    "HR002"
+  ],
+  "Education": [
+    "HR003",
+    "HR004"
+  ],
+  "Experience": [
+    "HR005",
+    "HR006"
+  ],
+  "Skills": [
+    "HR007",
+    "HR008"
+  ],
+  "Location": [
+    "HR009",
+    "HR010"
+  ],
+  "Salary": [
+    "HR011",
+    "HR012"
+  ],
+  "Notice_Period": [
+    "HR013",
+    "HR014"
+  ]
+}

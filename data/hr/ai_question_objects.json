@@ -1,0 +1,130 @@
+{
+  "questions": [
+    {
+      "id": "HR001",
+      "category": "Introduction",
+      "prompt": "Hello! Let's begin the screening interview. Can you briefly introduce yourself?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance_weight": 0.9,
+      "follow_up_allowed": true
+    },
+    {
+      "id": "HR002",
+      "category": "Introduction",
+      "prompt": "Why are you interested in this role?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance_weight": 0.7,
+      "follow_up_allowed": true
+    },
+    {
+      "id": "HR003",
+      "category": "Education",
+      "prompt": "What is your highest educational qualification?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance_weight": 0.8,
+      "follow_up_allowed": false
+    },
+    {
+      "id": "HR004",
+      "category": "Education",
+      "prompt": "Which university or institution did you graduate from?",
+      "answer_type": "text",
+      "mandatory": false,
+      "importance_weight": 0.4,
+      "follow_up_allowed": false
+    },
+    {
+      "id": "HR005",
+      "category": "Experience",
+      "prompt": "How many years of professional experience do you have?",
+      "answer_type": "number",
+      "mandatory": true,
+      "importance_weight": 0.9,
+      "follow_up_allowed": false
+    },
+    {
+      "id": "HR006",
+      "category": "Experience",
+      "prompt": "Can you briefly describe your previous job responsibilities?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance_weight": 0.7,
+      "follow_up_allowed": true
+    },
+    {
+      "id": "HR007",
+      "category": "Skills",
+      "prompt": "What are your key professional or technical skills?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance_weight": 0.9,
+      "follow_up_allowed": true
+    },
+    {
+      "id": "HR008",
+      "category": "Skills",
+      "prompt": "Which tools or technologies are you most comfortable using?",
+      "answer_type": "text",
+      "mandatory": false,
+      "importance_weight": 0.6,
+      "follow_up_allowed": true
+    },
+    {
+      "id": "HR009",
+      "category": "Location",
+      "prompt": "Where are you currently located?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance_weight": 0.6,
+      "follow_up_allowed": false
+    },
+    {
+      "id": "HR010",
+      "category": "Location",
+      "prompt": "Are you willing to relocate if required?",
+      "answer_type": "boolean",
+      "mandatory": false,
+      "importance_weight": 0.5,
+      "follow_up_allowed": false
+    },
+    {
+      "id": "HR011",
+      "category": "Salary",
+      "prompt": "What is your current salary?",
+      "answer_type": "number",
+      "mandatory": false,
+      "importance_weight": 0.6,
+      "follow_up_allowed": false
+    },
+    {
+      "id": "HR012",
+      "category": "Salary",
+      "prompt": "What are your salary expectations for this role?",
+      "answer_type": "number",
+      "mandatory": true,
+      "importance_weight": 0.8,
+      "follow_up_allowed": false
+    },
+    {
+      "id": "HR013",
+      "category": "Notice_Period",
+      "prompt": "What is your current notice period?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance_weight": 0.8,
+      "follow_up_allowed": false
+    },
+    {
+      "id": "HR014",
+      "category": "Notice_Period",
+      "prompt": "How soon can you join if selected?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance_weight": 0.7,
+      "follow_up_allowed": false
+    }
+  ]
+}

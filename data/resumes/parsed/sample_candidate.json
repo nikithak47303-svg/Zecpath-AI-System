@@ -1,0 +1,25 @@
+{
+  "name": "Arjun Menon",
+  "email": "arjun.menon@example.com",
+  "phone": "+91-9876543210",
+  "skills": ["Python", "SQL", "Data Analysis", "Excel"],
+  "experience": 3,
+  "education": [
+    {
+      "degree": "B.Tech",
+      "branch": "Computer Science",
+      "year_of_passing": 2021,
+      "college": "NIT Calicut"
+    }
+  ],
+  "certifications": [
+    "Python Programming",
+    "Data Analysis with Excel"
+  ],
+  "projects": [
+    {
+      "name": "Online Library Management System",
+      "description": "Developed a PHP-MySQL based library management web app."
+    }
+  ]
+}

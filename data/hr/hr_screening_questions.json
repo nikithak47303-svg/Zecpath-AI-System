@@ -1,0 +1,116 @@
+{
+  "questions": [
+    {
+      "question_id": "HR001",
+      "category": "Introduction",
+      "question": "Can you briefly introduce yourself?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance": "high"
+    },
+    {
+      "question_id": "HR002",
+      "category": "Introduction",
+      "question": "Why are you interested in this role?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance": "medium"
+    },
+    {
+      "question_id": "HR003",
+      "category": "Education",
+      "question": "What is your highest educational qualification?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance": "high"
+    },
+    {
+      "question_id": "HR004",
+      "category": "Education",
+      "question": "Which university or institution did you graduate from?",
+      "answer_type": "text",
+      "mandatory": false,
+      "importance": "low"
+    },
+    {
+      "question_id": "HR005",
+      "category": "Experience",
+      "question": "How many years of professional experience do you have?",
+      "answer_type": "number",
+      "mandatory": true,
+      "importance": "high"
+    },
+    {
+      "question_id": "HR006",
+      "category": "Experience",
+      "question": "Can you describe your previous job responsibilities?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance": "medium"
+    },
+    {
+      "question_id": "HR007",
+      "category": "Skills",
+      "question": "What are your key professional or technical skills?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance": "high"
+    },
+    {
+      "question_id": "HR008",
+      "category": "Skills",
+      "question": "Which tools or technologies are you most comfortable using?",
+      "answer_type": "text",
+      "mandatory": false,
+      "importance": "medium"
+    },
+    {
+      "question_id": "HR009",
+      "category": "Location",
+      "question": "Where are you currently located?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance": "medium"
+    },
+    {
+      "question_id": "HR010",
+      "category": "Location",
+      "question": "Are you willing to relocate if required?",
+      "answer_type": "boolean",
+      "mandatory": false,
+      "importance": "medium"
+    },
+    {
+      "question_id": "HR011",
+      "category": "Salary",
+      "question": "What is your current salary?",
+      "answer_type": "number",
+      "mandatory": false,
+      "importance": "medium"
+    },
+    {
+      "question_id": "HR012",
+      "category": "Salary",
+      "question": "What are your salary expectations for this role?",
+      "answer_type": "number",
+      "mandatory": true,
+      "importance": "high"
+    },
+    {
+      "question_id": "HR013",
+      "category": "Notice Period",
+      "question": "What is your current notice period?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance": "high"
+    },
+    {
+      "question_id": "HR014",
+      "category": "Notice Period",
+      "question": "How soon can you join if selected?",
+      "answer_type": "text",
+      "mandatory": true,
+      "importance": "medium"
+    }
+  ]
+}
