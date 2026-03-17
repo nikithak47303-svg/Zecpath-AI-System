@@ -1,0 +1,33 @@
+{
+  "screening_id": "SCR001",
+  "candidate_id": "CAND102",
+  "job_id": "AUD020",
+  "interview_date": "2026-03-16",
+  "evaluation": {
+    "overall_score": 82,
+    "status": "Eligible"
+  },
+  "responses": [
+    {
+      "question_id": "HR001",
+      "question_category": "Introduction",
+      "candidate_answer": "My name is Arjun Menon. I completed my MBA in Finance and have two years of experience in auditing.",
+      "ai_score": 8.5,
+      "confidence": 0.94
+    },
+    {
+      "question_id": "HR003",
+      "question_category": "Education",
+      "candidate_answer": "I completed my MBA in Finance from Calicut University.",
+      "ai_score": 8.0,
+      "confidence": 0.92
+    },
+    {
+      "question_id": "HR005",
+      "question_category": "Experience",
+      "candidate_answer": "I have two years of experience in auditing and financial analysis.",
+      "ai_score": 8.7,
+      "confidence": 0.93
+    }
+  ]
+}

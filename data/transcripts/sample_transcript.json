@@ -1,0 +1,29 @@
+{
+  "transcript_id": "TRX001",
+  "candidate_id": "CAND102",
+  "job_id": "AUD020",
+  "interview_date": "2026-03-16",
+  "conversation": [
+    {
+      "question_id": "HR001",
+      "question_text": "Can you briefly introduce yourself?",
+      "candidate_response": "My name is Arjun Menon. I completed my MBA in Finance and I have two years of experience in auditing.",
+      "timestamp": "00:00:15",
+      "confidence_score": 0.95
+    },
+    {
+      "question_id": "HR003",
+      "question_text": "What is your highest educational qualification?",
+      "candidate_response": "I completed my MBA in Finance from Calicut University.",
+      "timestamp": "00:00:45",
+      "confidence_score": 0.93
+    },
+    {
+      "question_id": "HR005",
+      "question_text": "How many years of professional experience do you have?",
+      "candidate_response": "I have two years of experience in auditing and financial analysis.",
+      "timestamp": "00:01:20",
+      "confidence_score": 0.92
+    }
+  ]
+}
