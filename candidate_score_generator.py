@@ -4,7 +4,7 @@ import re
 # ==============================
 # HELPER FUNCTIONS
 # ==============================
-
+from semantic_matching_engine import calculate_detailed_match
 def normalize_text(text):
     """Lowercase and convert list/dict items into a single string for comparison."""
     if not text:
@@ -74,34 +74,69 @@ def match_education(candidate_edu, required_edu):
 # ==============================
 
 def generate_candidate_score(resume_path, job_data):
-    """
-    Calculate candidate score (0-100%) based on:
-    - Skills (50%)
-    - Experience (30%)
-    - Education (20%)
-    """
+
     with open(resume_path, "r") as f:
         resume_data = json.load(f)
 
     if isinstance(resume_data, list):
         resume_data = resume_data[0]
 
-    # Candidate info
+    # ==============================
+    # SEMANTIC MATCHING (CORRECT PLACE)
+    # ==============================
+
+    resume_text_data = {
+        "skills": str(resume_data.get("skills", "")),
+        "experience": str(resume_data.get("experience", "")),
+        "projects": str(resume_data.get("projects", ""))
+    }
+
+    job_text_data = {
+        "skills": str(job_data.get("required_skills", "")),
+        "experience": str(job_data.get("required_experience", "")),
+        "projects": str(job_data.get("description", ""))
+    }
+
+    semantic_result = calculate_detailed_match(
+        resume_text_data,
+        job_text_data
+    )
+
+    semantic_score = semantic_result["final_match_score"]
+
+    # ==============================
+    # CANDIDATE DATA
+    # ==============================
+
     candidate_skills = resume_data.get("skills", [])
     candidate_exp_years = resume_data.get("total_experience_years", 0)
     candidate_education = resume_data.get("education", "")
 
-    # Job info
+    # ==============================
+    # JOB DATA
+    # ==============================
+
     required_skills = job_data.get("required_skills", [])
     min_experience = job_data.get("min_experience_years", 0)
     required_education = job_data.get("required_education", "")
 
-    # Compute partial scores
+    # ==============================
+    # SCORE CALCULATIONS
+    # ==============================
+
     skill_score = match_skills(candidate_skills, required_skills)
     exp_score = match_experience(candidate_exp_years, min_experience)
     edu_score = match_education(candidate_education, required_education)
 
-    # Weighted total
-    total_score = (0.5 * skill_score) + (0.3 * exp_score) + (0.2 * edu_score)
+    # ==============================
+    # FINAL SCORE (WITH SEMANTIC)
+    # ==============================
+
+    total_score = (
+        0.4 * skill_score +
+        0.2 * exp_score +
+        0.2 * edu_score +
+        0.2 * semantic_score
+    )
 
     return round(total_score, 2)
