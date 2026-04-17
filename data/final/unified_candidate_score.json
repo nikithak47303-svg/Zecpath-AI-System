@@ -1,0 +1,18 @@
+{
+    "candidate_id": "CAND102",
+    "job_id": "AUD020",
+    "scores": {
+        "ats_score": 72,
+        "ai_screening_score": 80,
+        "hr_interview_score": 75
+    },
+    "weights": {
+        "ats": 0.3,
+        "screening": 0.4,
+        "hr": 0.3
+    },
+    "final_score": 76.1,
+    "confidence": 0.92,
+    "hiring_decision": "Hire",
+    "remarks": "Auto-generated hiring decision based on multi-stage evaluation."
+}

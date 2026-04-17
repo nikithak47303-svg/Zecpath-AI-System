@@ -12,7 +12,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RESUME_FOLDER = os.path.join(BASE_DIR, "data", "labeled")
 MASTER_JOB_FILE = os.path.join(BASE_DIR, "data", "jobs", "auditor_roles_master.json")
 
-SELECTED_JOB_ID = "AUD064"
+SELECTED_JOB_ID = "AUD002"
 
 
 # ==============================

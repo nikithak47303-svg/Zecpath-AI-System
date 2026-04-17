@@ -1,0 +1,21 @@
+{
+    "job_id": "AUD020",
+    "evaluation_date": "2026-04-13",
+    "candidates": [
+        {
+            "candidate_name": "Arjun Menon",
+            "ats_score": 80,
+            "eligibility_status": "Eligible"
+        },
+        {
+            "candidate_name": "Rahul Nair",
+            "ats_score": 60,
+            "eligibility_status": "Review"
+        },
+        {
+            "candidate_name": "Neha Pillai",
+            "ats_score": 40,
+            "eligibility_status": "Rejected"
+        }
+    ]
+}
