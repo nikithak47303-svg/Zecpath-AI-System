@@ -1,5 +1,33 @@
 import re
 
+# ==============================
+# SAFE CLEANING FUNCTION
+# ==============================
+
+def clean_answer(answer):
+    if not answer or len(answer.strip()) == 0:
+        return "no valid response"
+    return answer.strip().lower()
+
+
+def safe_process_answer(answer):
+    try:
+        return clean_answer(answer)
+    except Exception:
+        return "processing error"
+
+
+# ==============================
+# CONFIDENCE NORMALIZATION
+# ==============================
+
+def normalize_confidence(score):
+    if score < 0.5:
+        return 0.5
+    elif score > 0.95:
+        return 0.95
+    return round(score, 2)
+
 
 # ==============================
 # KEYWORD DEFINITIONS
@@ -23,8 +51,6 @@ SALARY_KEYWORDS = ["salary", "ctc", "lpa", "expected"]
 
 def classify_intent(answer):
 
-    answer = answer.lower()
-
     scores = {
         "experience": 0,
         "skill": 0,
@@ -32,7 +58,6 @@ def classify_intent(answer):
         "salary": 0
     }
 
-    # 🔹 Weighted scoring
     for word in EXPERIENCE_KEYWORDS:
         if word in answer:
             scores["experience"] += 2
@@ -63,13 +88,7 @@ def classify_intent(answer):
 
 def extract_skills(answer):
 
-    found_skills = []
-
-    for skill in SKILL_KEYWORDS:
-        if skill in answer.lower():
-            found_skills.append(skill)
-
-    return found_skills
+    return [skill for skill in SKILL_KEYWORDS if skill in answer]
 
 
 # ==============================
@@ -78,7 +97,7 @@ def extract_skills(answer):
 
 def extract_experience(answer):
 
-    match = re.search(r'(\d+)\s*(year|years)', answer.lower())
+    match = re.search(r'(\d+)\s*(year|years)', answer)
 
     if match:
         return int(match.group(1))
@@ -87,23 +106,24 @@ def extract_experience(answer):
 
 
 # ==============================
-# OFF-TOPIC DETECTION
+# QUALITY CHECKS
 # ==============================
 
 def is_off_topic(answer):
-
     return len(answer.split()) < 3
 
 
-# ==============================
-# VAGUE ANSWER DETECTION
-# ==============================
-
 def is_vague(answer):
-
     vague_words = ["maybe", "not sure", "don't know", "some"]
+    return any(word in answer for word in vague_words)
 
-    return any(word in answer.lower() for word in vague_words)
+
+# ==============================
+# FOLLOW-UP LOGIC
+# ==============================
+
+def should_ask_followup(answer):
+    return len(answer.split()) < 3
 
 
 # ==============================
@@ -112,14 +132,37 @@ def is_vague(answer):
 
 def understand_answer(answer):
 
+    answer = safe_process_answer(answer)
+
     return {
-        "original_answer": answer,
+        "cleaned_answer": answer,
         "intent": classify_intent(answer),
         "skills": extract_skills(answer),
         "experience_years": extract_experience(answer),
         "is_off_topic": is_off_topic(answer),
-        "is_vague": is_vague(answer)
+        "is_vague": is_vague(answer),
+        "needs_followup": should_ask_followup(answer)
     }
+
+
+# ==============================
+# CONFIDENCE CALCULATION (NEW)
+# ==============================
+
+def calculate_confidence(analysis):
+
+    score = 0.9
+
+    if analysis["is_off_topic"]:
+        score -= 0.3
+
+    if analysis["is_vague"]:
+        score -= 0.2
+
+    if analysis["experience_years"] > 0:
+        score += 0.05
+
+    return normalize_confidence(score)
 
 
 # ==============================
@@ -129,6 +172,7 @@ def understand_answer(answer):
 def build_structured_answer(answer):
 
     analysis = understand_answer(answer)
+    confidence = calculate_confidence(analysis)
 
     structured = {
         "intent": analysis["intent"],
@@ -140,8 +184,11 @@ def build_structured_answer(answer):
 
         "quality": {
             "is_off_topic": analysis["is_off_topic"],
-            "is_vague": analysis["is_vague"]
+            "is_vague": analysis["is_vague"],
+            "needs_followup": analysis["needs_followup"]
         },
+
+        "confidence_score": confidence,
 
         "final_status": "valid"
     }
@@ -167,6 +214,7 @@ if __name__ == "__main__":
         "I know python and sql",
         "Maybe I can join after one month",
         "yes",
+        "",
         "My expected salary is 5 LPA"
     ]
 
